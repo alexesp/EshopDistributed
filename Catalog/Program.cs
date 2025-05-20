@@ -11,7 +11,11 @@ var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-app.UseMigration();
+//if(app.Environment.IsDevelopment())
+//{
+    app.UseMigration();
+//}
+
 
 // Configure the HTTP request pipeline.
 
