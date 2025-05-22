@@ -4,7 +4,7 @@ namespace Catalog.Endpoints
 {
     public static class ProductEndpoints
     {
-        public static async Task MapProductEndpoints(this IEndpointRouteBuilder app)
+        public static void MapProductEndpoints(this IEndpointRouteBuilder app)
         {
             var group = app.MapGroup("/products");
 
@@ -42,7 +42,40 @@ namespace Catalog.Endpoints
                 .Produces<Product>(StatusCodes.Status201Created);
 
             //Put (Update)
-            
+
+            group.MapPut("/{id}", async (int id, Product inputProduct, ProductService service) =>
+            {
+                var updatedProduct = await service.GetProductByIdAsync(id);
+                if (updatedProduct is null)
+                {
+                    return Results.NotFound();
+                }
+
+                await service.UpdateProductAsync(updatedProduct, inputProduct);
+                return Results.NoContent();
+            })
+                .WithName("UpdateProduct")
+                .Produces(StatusCodes.Status404NotFound)
+                .Produces(StatusCodes.Status204NoContent);
+
+
+            // Delete
+
+            group.MapDelete("/{id}", async (int id, ProductService service) =>
+            {
+                var deletedProduct = await service.GetProductByIdAsync(id);
+                if (deletedProduct is null)
+                {
+                    return Results.NoContent();
+                }
+
+                await service.DeleteProductAsync(deletedProduct);
+                return Results.NoContent();
+            })
+                .WithName("DeleteProduct")
+                .Produces(StatusCodes.Status404NotFound)
+                .Produces(StatusCodes.Status204NoContent);
+
         }
     }
 }
