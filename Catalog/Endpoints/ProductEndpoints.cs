@@ -12,6 +12,7 @@ namespace Catalog.Endpoints
             group.MapGet("/", async (ProductService service) =>
                 {
                     var products = await service.GetProductsAsync();
+                    return Results.Ok(products);
                 })
                 .WithName("GetAllProducts")
                 .Produces<List<Product>>(StatusCodes.Status200OK);

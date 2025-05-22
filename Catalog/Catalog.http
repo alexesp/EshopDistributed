@@ -5,13 +5,13 @@ Accept: application/json
 
 ###
 
-GET {{Catalog_HostAddress}}/10
+GET {{Catalog_HostAddress}}/2
 Accept: application/json
 
 ###
 
 POST {{Catalog_HostAddress}}/
-Accept: application/json
+Content-Type: application/json
 {
   "id": 10,
   "name": "NEW Swn Flashlight",
@@ -23,7 +23,7 @@ Accept: application/json
 ###
 
 PUT {{Catalog_HostAddress}}/10
-Accept: application/json
+Content-Type: application/json
 {  
   "name": "UPDATED Swn Flashlight",
   "description": "A UPDATED swn product for outdoor enthusiasts",
@@ -33,4 +33,4 @@ Accept: application/json
 
 ###
 DELETE {{Catalog_HostAddress}}/10
-Accept: application/json
+Content-Type: application/json
