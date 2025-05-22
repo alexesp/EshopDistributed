@@ -2,6 +2,15 @@
 {
     public class ProductService(ProductDbContext dbContext)
     {
+        public async Task<IEnumerable<Product>> GetProductsAsync()
+        {
+            return await dbContext.Products.ToListAsync();
+        }
+
+        public async Task<Product?> GetProductByIdAsync(int id)
+        {
+            return await dbContext.Products.FindAsync(id);
+        }
         public async Task CreateProductAsync(Product product)
         {
             dbContext.Products.Add(product);

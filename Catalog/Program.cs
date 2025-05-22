@@ -1,4 +1,5 @@
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
@@ -6,6 +7,7 @@ builder.AddServiceDefaults();
 // Add services to the container.
 
 builder.AddNpgsqlDbContext<ProductDbContext>(connectionName: "catalogdb");
+builder.Services.AddScoped<ProductService>();
 
 var app = builder.Build();
 
