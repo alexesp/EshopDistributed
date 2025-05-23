@@ -19,4 +19,8 @@ var catalog = builder
 
 //builder.AddProject<Projects.Catalog>("catalog");
 
+builder.AddProject<Projects.Basket>("basket");
+
+//builder.AddProject<Projects.Catalog>("catalog");
+
 builder.Build().Run();
