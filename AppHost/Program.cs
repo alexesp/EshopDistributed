@@ -30,6 +30,7 @@ var catalog = builder
 var basket = builder
     .AddProject<Projects.Basket>("basket")
     .WithReference(cache)
+    .WithReference(catalog)
     .WaitFor(cache);
 
 //builder.AddProject<Projects.Catalog>("catalog");
